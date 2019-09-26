@@ -5,22 +5,17 @@ from bs4 import BeautifulSoup as bs
 
 def get_html(url):
     r = req.get(url)
-    return r.text
+    return r
 
 
-def get_data_cash(html):
-    soup = bs(html, 'lxml')
-    data = soup.getText()[2:len(soup.getText()) - 2].split("},{")
-    for line in data:
-        infs = line.split(",")
-        d = {}
-        for inf in infs:
-            inf = inf.replace("\":", "\" : ")
-            f = inf.split(' : ')
-            d[f[0]] = f[1]
-        print("За {} курс {} рублей за 1 {}".format(d["\"Date\""][1: -1],
-                                                    d["\"Cur_OfficialRate\""],
-                                                    d["\"Cur_Name\""][1: -1]))
+def get_data_price(html):
+    data = html.json()
+    for i in range(len(data)):
+        print("За {} курс {} рублей за 1 {}".format(
+            data[i]["Date"],
+            data[i]["Cur_OfficialRate"],
+            data[i]["Cur_Name"])
+            )
 
 
 def get_list_articles(html):
@@ -29,5 +24,5 @@ def get_list_articles(html):
     for art in articles:
         print(art.find('a', {'class': ['post__title_link']}).get_text())
 
-# get_data_cash(get_html("http://www.nbrb.by/api/exrates/rates?periodicity=0"))
-get_list_articles(get_html("https://habr.com/ru/top/monthly/"))
+get_data_price(get_html("http://www.nbrb.by/api/exrates/rates?periodicity=0"))
+# get_list_articles(get_html("https://habr.com/ru/top/monthly/"))
