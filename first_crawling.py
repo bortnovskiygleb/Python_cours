@@ -19,10 +19,10 @@ def get_data_price(html):
 
 
 def get_list_articles(html):
-    soup = bs(html, 'lxml')
+    soup = bs(html.text, 'lxml')
     articles = soup.find_all('article', {'class': ['post post_preview']})
     for art in articles:
         print(art.find('a', {'class': ['post__title_link']}).get_text())
 
-get_data_price(get_html("http://www.nbrb.by/api/exrates/rates?periodicity=0"))
-# get_list_articles(get_html("https://habr.com/ru/top/monthly/"))
+# get_data_price(get_html("http://www.nbrb.by/api/exrates/rates?periodicity=0"))
+get_list_articles(get_html("https://habr.com/ru/top/monthly/"))
