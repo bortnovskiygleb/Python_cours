@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "result": [
+    {
+      "update_id": 595769885,
+      "message": {
+        "message_id": 1,
+        "from": {
+          "id": 466060295,
+          "is_bot": false,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy"
+        },
+        "chat": {
+          "id": 466060295,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy",
+          "type": "private"
+        },
+        "date": 1569765915,
+        "text": "/start",
+        "entities": [
+          {
+            "offset": 0,
+            "length": 6,
+            "type": "bot_command"
+          }
+        ]
+      }
+    },
+    {
+      "update_id": 595769886,
+      "message": {
+        "message_id": 2,
+        "from": {
+          "id": 466060295,
+          "is_bot": false,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy",
+          "language_code": "ru"
+        },
+        "chat": {
+          "id": 466060295,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy",
+          "type": "private"
+        },
+        "date": 1569765944,
+        "text": "Hi!"
+      }
+    },
+    {
+      "update_id": 595769887,
+      "message": {
+        "message_id": 3,
+        "from": {
+          "id": 466060295,
+          "is_bot": false,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy",
+          "language_code": "ru"
+        },
+        "chat": {
+          "id": 466060295,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy",
+          "type": "private"
+        },
+        "date": 1569767698,
+        "text": "Привет!"
+      }
+    },
+    {
+      "update_id": 595769888,
+      "message": {
+        "message_id": 5,
+        "from": {
+          "id": 466060295,
+          "is_bot": false,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy",
+          "language_code": "ru"
+        },
+        "chat": {
+          "id": 466060295,
+          "first_name": "Gleb",
+          "last_name": "Bortnovskiy",
+          "type": "private"
+        },
+        "date": 1569768348,
+        "text": "Приветик)"
+      }
+    }
+  ]
+}
