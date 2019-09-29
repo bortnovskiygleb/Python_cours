@@ -1,2 +1,4 @@
 .vscode/settings.json
 .vscode/launch.json
+.idea
+__pycache__/token.cpython-37.pyc
