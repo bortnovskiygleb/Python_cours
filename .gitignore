@@ -2,3 +2,5 @@
 .vscode/launch.json
 .idea
 __pycache__/token.cpython-37.pyc
+__pycache__/first_crawling.cpython-37.pyc
+__pycache__/mon.cpython-37.pyc
