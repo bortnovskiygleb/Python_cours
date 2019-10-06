@@ -13,26 +13,34 @@ last_upd = 0
 def get_updates():
     url = URL + 'getupdates'
     r = requests.get(url)
+    if r.status_code != 200:
+        print("Error conect")
+        return None
     return r.json()
 
 
 def get_message():
     data = get_updates()
+    if data is None:
+        return None
+    try:
+        last_obj = data['result'][-1]
+        update_id = last_obj['update_id']
 
-    last_obj = data['result'][-1]
-    update_id = last_obj['update_id']
+        global last_upd
+        if last_upd != update_id:
+            last_upd = update_id
 
-    global last_upd
-    if last_upd != update_id:
-        last_upd = update_id
+            chat_id = last_obj['message']['chat']['id']
+            message_text = last_obj['message']['text']
 
-        chat_id = last_obj['message']['chat']['id']
-        message_text = last_obj['message']['text']
-
-        message = {'chat_id': chat_id,
-                   'text': message_text}
-        return message
-    return None
+            message = {'chat_id': chat_id,
+                       'text': message_text}
+            return message
+        return None
+    except KeyError:
+        print("Key erros")
+        return 'error'
 
 
 def send_message(chat_id, text):
@@ -43,6 +51,8 @@ def send_message(chat_id, text):
 def main():
     while True:
         answer = get_message()
+        if answer == 'error':
+            return
         if answer is not None:
             text = answer['text']
             if text == '/mon':
