@@ -1,6 +1,9 @@
 .vscode/settings.json
 .vscode/launch.json
 .idea
+.logs
+.messages
+.__pycache__
 __pycache__/token.cpython-37.pyc
 __pycache__/first_crawling.cpython-37.pyc
 __pycache__/mon.cpython-37.pyc
