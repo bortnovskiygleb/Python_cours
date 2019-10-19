@@ -1,5 +1,6 @@
 import requests as req
 from bot_config import time
+import datetime
 
 
 class Tg_bot:
@@ -13,6 +14,8 @@ class Tg_bot:
         return r.json()
 
     def get_message(self):
+        if not self.connection_chek():
+            return None
         data = self.get_updates()
         last_obj = data['result'][-1]
 
@@ -31,6 +34,33 @@ class Tg_bot:
         }
         response = req.post(self.url + method, params)
         return response
+
+    def last_messsages_from_me(self, count_messages):
+        if not self.connection_chek():
+            return
+        data = self.get_updates()
+        results = data['result']
+        last_obj = results[-1]
+
+        chat_id = last_obj['message']['chat']['id']
+
+        count_available_messages = len(results)
+        if count_available_messages < count_messages:
+            index = -count_available_messages
+            message_text = results[index]['message']['text']
+            self.send_message(chat_id, f'{count_available_messages} messages ago u texted:\n' + message_text)
+        else:
+            index = -count_messages
+            message_text = results[index]['message']['text']
+            self.send_message(chat_id, f'{count_messages} messages ago u texted:\n' + message_text)
+
+    def connection_chek(self):
+        method = 'getupdates'
+        r = req.get(self.url + method)
+        if r.status_code != 200:
+            print(f'Error: {r.status_code}, ' + r.json()['description'])
+            return False
+        return True
 
 
 class Money_bot(Tg_bot):
